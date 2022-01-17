@@ -17,7 +17,7 @@ function search(string $queryString)
   $searchResults = $client->search([
     'index' => 'kokkai_kaigiroku2',
     'body' => [
-      'size' => '100',
+      'size' => '100', //表示する発言の上限数
       'query' => [
         'multi_match' => [
           'query' => $queryString
@@ -28,6 +28,7 @@ function search(string $queryString)
   ]);
 
   echo $res = json_encode($searchResults, JSON_UNESCAPED_UNICODE);
+  //hits->talk->valueの数字は100件の上限に関わらない，ヒット件数
 
 }
 
